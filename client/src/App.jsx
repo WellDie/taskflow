@@ -6,6 +6,7 @@ import TaskCard from './components/TaskCard.jsx';
 import TaskToolbar from './components/TaskToolbar.jsx';
 import TaskForm from './components/TaskForm.jsx';
 import { initialTasks } from './data/tasks.js';
+import PracticeDemo from './components/PracticeDemo.jsx';
 
 export default function App() {
   const [tasks, setTasks] = useState(() => {
@@ -101,6 +102,7 @@ export default function App() {
             ))}
           </div>
         </section>
+        <PracticeDemo />
       </main>
       
       {isFormOpen && (
