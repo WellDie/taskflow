@@ -5,14 +5,18 @@ import StatCard from './components/StatCard.jsx';
 import TaskCard from './components/TaskCard.jsx';
 import TaskToolbar from './components/TaskToolbar.jsx';
 import TaskForm from './components/TaskForm.jsx';
-import { initialTasks } from './data/tasks.js';
 import PracticeDemo from './components/PracticeDemo.jsx';
+import { initialTasks } from './data/tasks.js';
 
 export default function App() {
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('taskflow.tasks');
     if (saved) {
-      return JSON.parse(saved);
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return initialTasks;
+      }
     }
     return initialTasks;
   });
@@ -79,7 +83,7 @@ export default function App() {
         <section className="panel">
           <div className="sectionHeading">
             <div>
-              <p className="eyebrow">Фокус</p>
+              <p className="eyebrow">Фокус (Практики 1–2)</p>
               <h2>Мои задачи</h2>
             </div>
           </div>
@@ -90,18 +94,29 @@ export default function App() {
             onStatusFilterChange={setStatusFilter}
             onResetFilters={handleResetFilters}
           />
+          <div className="resultLine">
+            Найдено задач: {filteredTasks.length}
+          </div>
           <div className="taskList">
-            {filteredTasks.map((task) => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                onStatusChange={handleStatusChange}
-              />
-            ))}
+            {filteredTasks.length > 0 ? (
+              filteredTasks.map((task) => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                  onStatusChange={handleStatusChange}
+                />
+              ))
+            ) : (
+              <div className="emptyState">
+                <strong>Задачи не найдены</strong>
+                <span>Измените запрос или сбросьте фильтры.</span>
+              </div>
+            )}
           </div>
         </section>
+
         <PracticeDemo />
       </main>
       
