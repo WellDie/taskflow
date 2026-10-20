@@ -6,23 +6,21 @@ export default function TaskToolbar({
   onResetFilters,
 }) {
   return (
-    <div className="toolbar" style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
-      <label className="searchField" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <span style={{ fontSize: '12px', color: '#667085', marginBottom: '4px' }}>Поиск</span>
+    <div className="toolbar">
+      <label className="searchField">
+        <span>Поиск</span>
         <input
           type="search"
           value={search}
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder="Название или проект"
-          style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid #d9deea' }}
         />
       </label>
-      <label className="filterField" style={{ display: 'flex', flexDirection: 'column' }}>
-        <span style={{ fontSize: '12px', color: '#667085', marginBottom: '4px' }}>Статус</span>
+      <label className="filterField">
+        <span>Статус</span>
         <select
           value={statusFilter}
           onChange={(event) => onStatusFilterChange(event.target.value)}
-          style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid #d9deea' }}
         >
           <option value="Все">Все</option>
           <option value="Нужно сделать">Нужно сделать</option>
@@ -31,10 +29,9 @@ export default function TaskToolbar({
         </select>
       </label>
       <button
-        className="ghostButton"
+        className="ghostButton toolbarButton"
         type="button"
         onClick={onResetFilters}
-        style={{ alignSelf: 'flex-end', padding: '9px 16px' }}
       >
         Сбросить
       </button>
