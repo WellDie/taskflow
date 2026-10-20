@@ -23,18 +23,22 @@ export default function TaskCard({ task, onEdit, onDelete, onStatusChange }) {
         </div>
         <h3>{task.title}</h3>
         <p>{task.project}</p>
-        <div style={{ display: 'flex', gap: '8px', marginTop: '14px' }}>
-          <button className="ghostButton" style={{ padding: '6px 12px', fontSize: '12px' }} type="button" onClick={() => onEdit(task)}>
+        <div className="taskActions">
+          {task.status !== 'В работе' && (
+            <button type="button" onClick={() => onStatusChange(task.id, 'В работе')}>
+              В работу
+            </button>
+          )}
+          {task.status !== 'Готово' && (
+            <button type="button" onClick={() => onStatusChange(task.id, 'Готово')}>
+              Готово
+            </button>
+          )}
+          <button type="button" onClick={() => onEdit(task)}>
             Изменить
           </button>
-          <button className="ghostButton" style={{ padding: '6px 12px', fontSize: '12px' }} type="button" onClick={() => onDelete(task.id)}>
+          <button className="dangerAction" type="button" onClick={() => onDelete(task.id)}>
             Удалить
-          </button>
-          <button className="ghostButton" style={{ padding: '6px 12px', fontSize: '12px' }} type="button" onClick={() => {
-             const nextStatus = task.status === 'Нужно сделать' ? 'В работе' : task.status === 'В работе' ? 'Готово' : 'Нужно сделать';
-             onStatusChange(task.id, nextStatus);
-          }}>
-            Сменить статус
           </button>
         </div>
       </div>
