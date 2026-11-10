@@ -6,6 +6,10 @@ import TaskCard from './components/TaskCard.jsx';
 import TaskToolbar from './components/TaskToolbar.jsx';
 import TaskForm from './components/TaskForm.jsx';
 import PracticeDemo from './components/PracticeDemo.jsx';
+import Practice11 from './components/Practice11.jsx';
+import Practice12 from './components/Practice12.jsx';
+import Practice13 from './components/Practice13.jsx';
+import Practice14 from './components/Practice14.jsx';
 import { initialTasks } from './data/tasks.js';
 
 export default function App() {
@@ -118,6 +122,10 @@ export default function App() {
         </section>
 
         <PracticeDemo />
+        <Practice11 />
+        <Practice12 />
+        <Practice13 />
+        <Practice14 />
       </main>
       
       {isFormOpen && (
